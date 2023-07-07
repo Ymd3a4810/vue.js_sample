@@ -8,8 +8,7 @@
 
 2. まずは、package.jsonを正しい場所に配置したい
 ```
-mv todo-project/package.json ./
-rm -f package-lock.json
+mv todo-project
 ```
 
 3. モジュールのインストール
@@ -23,6 +22,39 @@ rm -f package-lock.json
 git remote add <リモート名> <リポジトリURL>
 ls -al
 cat .git/config 
+vi .git/config
+
+> url = git@github.com:Ymd3a4810/vue.js_sample.git
+> url = git@github.com:Ymd3a4810/vue_js_sample.git
+
+git add ./*
+git add ./*/*
+
+## gitコマンドで編集中のファイルを一時退避
+```
+git stash save "temporary"
+git stash list
+```
+
+## ローカルブランチを作成する
+https://www.atlassian.com/ja/git/tutorials/using-branches
+
+```
+git checkout -b develop origin/main
+git branch develop
+git branch -D develop
+```
+
+## gitコマンドで編集中のファイルを適用
+```
+git reflog
+git stash apply stash@{0}
+```
+
+## vuejsのインストール
+```
+npm install @vue/cli --save-dev
+```
 
 # vue.js_sample
 
