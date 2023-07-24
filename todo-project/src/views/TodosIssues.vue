@@ -3,7 +3,7 @@
     <h1>todoリスト</h1>
     <!-- todo入力フォーム -->
     <form @submit.prevent="addTodo()">
-      <el-input placeholder="todo" v-model="todo.name"></el-input>
+      <el-input placeholder="todo" v-model="todo"></el-input>
     </form>
     <el-row :gutter="12">
       <!-- todo表示エリア -->
@@ -34,13 +34,9 @@ const client = axios.create({
     'Accept': 'application/vnd.github.v3+json',
     'Content-Type':'application/json',
   },
-})
+});
 
 export default {
-  //自分で追加43まで
-  todo: {
-    name:[]
-  }
   name: 'TodosIssues',
   components: {
     TodoItem

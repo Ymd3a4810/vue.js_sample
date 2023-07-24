@@ -23,8 +23,8 @@
 import axios from 'axios';
 
 const client = axios.create({  //--1
-  baseURL: 'https://api.github.com/repos/diveintocode-corp/vue_seriese_api',
-  //baseURL: 'https://api.github.com/repos/Ymd3a/vue_seriese_api',
+  //baseURL: 'https://api.github.com/repos/diveintocode-corp/vue_seriese_api',
+  baseURL: `${process.env.VUE_APP_GITHUB_ENDPOINT}`,
   headers: { //--3
     'Accept': 'application/vnd.github.v3+json',
     'Content-Type':'application/json',
@@ -42,7 +42,7 @@ export default {
   methods: {
     getIssues() {
       // client定数からget()を呼び出し
-      client.get('/issues') //--4
+      client.get('/issues') //--4 gh issue listと意味は同じ
         .then((res) => {
           this.issues = res.data;
       })
