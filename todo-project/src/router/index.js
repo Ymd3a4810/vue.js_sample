@@ -2,7 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import TodoList from '../views/TodoList.vue'
-import TodoIssues from '../views/TodoIssues.vue'
+import TodosIssues from '../views/TodosIssues.vue'
+import IssueList from '../views/IssueList.vue'
 
 Vue.use(VueRouter)
 
@@ -21,9 +22,14 @@ const routes = [
     // which is lazy-loaded when the route is visited.
   },
   {
-    path: '/todo-issues',
-    name: 'TodoIssues',
-    component: TodoIssues,
+    path: '/todos-issues',
+    name: 'TodosIssues',
+    component: TodosIssues
+  },
+  {
+    path: '/issue-list',
+    name: 'IssueList',
+    component: IssueList,
   }
 ]
 
@@ -32,5 +38,6 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
 
 export default router
