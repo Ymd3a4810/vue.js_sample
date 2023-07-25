@@ -3,7 +3,6 @@
     <el-col :span="12">
       <el-card class="box-card" shadow="hover" style="margin: 5px 0;">
         <el-row :gutter="12">
-          //todo→todo.nameに変更
           <el-col :span="21">{{ todo }}</el-col>
           <el-col :span="3">
             <el-button @click="removeTodo(index)" type="success" icon="el-icon-check" circle></el-button>
@@ -29,12 +28,11 @@ const client = axios.create({
 
 export default {
   name: 'TodoItem',
-  data () {
-    return {
-      todo: '',
-    }
-  },
-  methods: {
+    methods: {
+    addTodo(){
+      this.todos.push(this.todo);
+      this.todo= '';
+    },
     removeTodo(index){
       this.todos.splice(index, 1);
     },
@@ -49,6 +47,15 @@ export default {
          this.issues.splice(index, 1);
       })
     },
+    getIssues() {
+      client.get('issues')
+        .then((res) => {
+          this.issues = res.data
+      })
+    }
+  },
+  created() {
+    this.getIssues();
   }
 }
 </script>

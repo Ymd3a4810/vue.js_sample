@@ -14,7 +14,7 @@
           <el-row :gutter="12">
             <el-col :span="21">{{ issue.title }}</el-col>
             <el-col :span="3">
-              <el-button @click="closeIssue(index)" type="success" icon="el-icon-check" circle></el-button>
+              <el-button @click="TodoItem.closeIssue(index)" type="success" icon="el-icon-check" circle></el-button>
             </el-col>
           </el-row>
         </el-card>
@@ -50,7 +50,7 @@ export default {
   },
   methods: {
     addTodo(){
-      this.todos.push(this.todo);
+      this.todos.push(TodoItem.todo);
       this.todo= '';
     },
     removeTodo(index){
