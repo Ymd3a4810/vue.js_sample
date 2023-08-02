@@ -7,14 +7,15 @@
     </form>
     <el-row :gutter="12">
       <!-- todo表示エリア -->
-      <TodoItem v-for="( todo, index ) in todos" :key="index" />
+      <!-- propsに値を渡すときは、snake caseに変換してわたす -->
+      <TodoItem v-for="( todo, index ) in todos" :key="index" :index="index" :todo="todo" @remove-todo="removeTodo"/>
       <!-- issue表示エリア -->
       <el-col :span="12"  v-for="( issue, index ) in issues" :key="issue.id">
         <el-card class="box-card" shadow="hover" style="margin: 5px 0;">
           <el-row :gutter="12">
             <el-col :span="21">{{ issue.title }}</el-col>
             <el-col :span="3">
-              <el-button @click="TodoItem.closeIssue(index)" type="success" icon="el-icon-check" circle></el-button>
+              <el-button @click="closeIssue(index)" type="success" icon="el-icon-check" circle></el-button>
             </el-col>
           </el-row>
         </el-card>
@@ -50,13 +51,15 @@ export default {
   },
   methods: {
     addTodo(){
-      this.todos.push(TodoItem.todo);
+      this.todos.push(this.todo);
       this.todo= '';
     },
     removeTodo(index){
       this.todos.splice(index, 1);
     },
     closeIssue(index){
+      console.log("closeIssue");
+      console.log(index);
       const target = this.issues[index];
       client.patch(`/issues/${target.number}`,
           {
@@ -72,7 +75,7 @@ export default {
         .then((res) => {
           this.issues = res.data
       })
-    }
+    },
   },
   created() {
     this.getIssues();
