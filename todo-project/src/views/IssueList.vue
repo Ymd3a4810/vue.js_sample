@@ -59,9 +59,9 @@ export default {
           this.issues.splice(index, 1) // --6
       })
     },
-    created() {
-    this.getIssues();
-  }
+    //created() {
+    //this.getIssues();
+  //}
 }
 
 </script>
